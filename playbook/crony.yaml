@@ -1,0 +1,17 @@
+---
+- hosts: linode
+
+  become: true
+  become_user: root
+  tasks:
+    - name: Ensure Chrony is installed
+      apt:
+        state: present
+        name:
+          - chrony
+          
+    - name: Ensure chrony is running.
+      service:
+        name: chronyd
+        state: started
+        enabled: yes
