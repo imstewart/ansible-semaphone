@@ -15,4 +15,23 @@
         state: present 
         shell: /bin/bash
         groups: sudo
+      register: newuser
+
+    - name: Create folder
+      file:
+        path: "{{ item }}"
+        state: directory
+        owner: deployer
+        group: deployer
+        mode: 0700
+      loop:
+        - /home/deployer/.ssh
+
+    - name: Copy Keys
+      copy:
+        src: keys/authorized_keys
+        dest: /home/deployer/.ssh/authorized_keys   
+        owner: deployer
+        group: deployer
+        mode: '0600'
 
