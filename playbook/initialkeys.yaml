@@ -29,6 +29,6 @@
       copy:
         src: keys/authorized_keys
         dest: /home/deployer/.ssh/authorized_keys   
-        owner: ian
-        group: ian
+        owner: deployer
+        group: deployer
         mode: '0700'
