@@ -4,11 +4,11 @@
 
   become: true
   become_user: root
-  
+
   tasks:
     - name: Copy Keys
       copy:
-        src: ../files/key/authorized_keys
+        src: files/key/authorized_keys
         dest: /home/ian1/.ssh/authorized_keys   
         owner: ian
         group: ian
