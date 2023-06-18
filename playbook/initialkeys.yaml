@@ -15,37 +15,4 @@
         state: present 
         shell: /bin/bash
         groups: sudo
-      register: newuser
 
-    - name: Create folder
-      file:
-        path: "{{ item }}"
-        state: directory
-        owner: deployer
-        group: deployer
-        mode: 0775
-      loop:
-        - /home/deployer/.ssh
-
-    - name: Copy Keys
-      copy:
-        src: keys/authorized_keys
-        dest: /home/deployer/.ssh/authorized_keys   
-        owner: deployer
-        group: deployer
-        mode: '0700'
-
-    - name: profile
-      copy:
-        src: defaults/.profile
-        dest: /home/deployer/.profile   
-        owner: deployer
-        group: deployer
-        mode: '0700'
-
-    - name: bashrc
-      copy:
-        src: defaults/.bashrc
-        dest: /home/deployer/.bashrc
-        group: deployer
-        mode: '0700'
