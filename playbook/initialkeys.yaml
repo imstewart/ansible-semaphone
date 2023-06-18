@@ -5,11 +5,31 @@
   become: true
   become_user: root
 
+
+
   tasks:
+    - name: create deployment user
+      user: 
+        name: deployer 
+        createhome: yes
+        password: mypassword 
+        state: present 
+      register: newuser
+
+    - name: Create folder
+      file:
+        path: "{{ item }}"
+        state: directory
+        owner: deployer
+        group: deployer
+        mode: 0775
+      loop:
+        - /home/deployer/.ssh
+
     - name: Copy Keys
       copy:
         src: keys/authorized_keys
-        dest: /home/ian1/.ssh/authorized_keys   
+        dest: /home/deployer/.ssh/authorized_keys   
         owner: ian
         group: ian
         mode: '0700'
