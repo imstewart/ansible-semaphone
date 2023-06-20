@@ -1,6 +1,6 @@
 ---
 
-- hosts: linode.ianstewart.net
+- hosts: linode
 
   become: true
   become_user: root
